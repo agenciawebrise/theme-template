@@ -1,0 +1,16 @@
+.store{
+    display: grid;
+    grid-gap: 30px;
+    grid-auto-columns: 1fr 300px 900px 1fr;
+    grid-template-areas:
+        ". header header ."
+        ". menu menu ."
+        ". sidebar main ."
+        ". footer footer ."
+}
+
+.header{ grid-area: header }
+.menu{ grid-area: menu }
+.main{ grid-area: main }
+.sidebar{ grid-area: sidebar }
+.footer{ grid-area: footer }

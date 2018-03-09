@@ -1,0 +1,8 @@
+{% element 'snippets/banner-home' %}
+
+{% set products = Products({
+    'filter': 'available',
+    'limit': 30,
+    'order': 'rand'
+}) %}
+{% element 'snippets/showcase' { "products": products } %}

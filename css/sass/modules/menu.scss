@@ -1,0 +1,36 @@
+.menu{
+
+    &__tag{}
+
+    &__level1{
+        background: #ccc;
+        display: flex;
+        justify-content: center;
+
+        &-item{
+            position: relative;
+        }
+
+        &-link{
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+        }
+    }
+
+    &__level2{
+        display: none;
+
+        &-item{}
+
+        &-link{}
+    }
+
+    &__level3{
+        display: none;
+
+        &-item{}
+
+        &-link{}
+    }
+}

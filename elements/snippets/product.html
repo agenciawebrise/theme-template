@@ -1,0 +1,113 @@
+{% set pages_itemtype = ['home', 'catalog', 'search'] %}
+<div class="product" title="{{ product.name }}" {% if pages.current in pages_itemtype %}itemscope itemtype="http://schema.org/Product"{% endif %}>
+    {% if pages.current in pages_itemtype %}
+        {% element 'schema/product' {'product': product} %} 
+    {% endif %}
+    <a href="{{ product.link }}" class="product__link">
+        <ul class="product__tags">
+            {% if settings.tag_offer %}
+                {% if not product.upon_request %}
+                    {% set porcentagemDesconto = 100 - ( product.price_offer / product.price ) * 100 %} 
+                    {% if porcentagemDesconto < 100 %} 
+                        <li class="product__tags-discount">{{ porcentagemDesconto|number_format }}% Off</li> 
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            
+            {% if product.free_shipping %}
+                <li class="product__tags-shipping">{{ Image('free_shipping') }}</li>
+            {% endif %}
+            
+            {% if product.featured %}
+                <li class="product__tags-featured">{{ Image('featured') }}</li>
+            {% endif %}
+            
+            {% if product.new %}
+                <li class="product__tags-new">{{ Image('new') }}</li>
+            {% endif %}
+            
+            {% if product.additional_button %}
+                <li class="product__tags-additional">{{ Image('additional_button') }}</li>
+            {% endif %}
+        </ul>
+        <div class="product__image"> 
+            {% if product.images[0].large %}
+                {% if product.images[1] and settings.double_img %}
+                    <img src="{{ product.images[0].large }}" alt="{{ product.name }}" data-first-img="{{ product.images[0].large }}" data-second-img="{{ product.images[1].large }}">
+                {% else %}
+                    <img src="{{ product.images[0].large }}" alt="{{ product.name }}">
+                {% endif %}
+            {% else %}
+                <img src="{{ asset('img/no-photo.jpg') }}" alt="{{ product.name }}">
+            {% endif %} 
+        </div>
+        
+        <div class="product__ranking">
+            <span class="product__ranking-star--{{ product.ranking.rating }}">Nota {{ product.ranking.rating }}/5</span>
+        </div>
+
+        {% if product.brand %}
+            <div class="product__brand">Marca: {{ product.brand }}</div>
+        {% endif %}
+
+        <h3 class="product__name">{{ product.name }}</h3>
+        {% if product.available %}
+            {% if product.stock > 0 or settings.without_stock_sale %}
+                {% if product.upon_request %}
+                    <div class="product__upon-request">Pre&ccedil;o Sob Consulta</div>
+                {% else %}
+                    <div class="product__price">
+                        {% if product.price_offer > 0 %}
+                            <div class="product__price-old">
+                                <span class="product__price-de">De: </span>
+                                <abbr class="product__currency" title="BRL">R$ </abbr>
+                                <span class="product__price-value">{{ product.price|currency }}</span>
+                            </div>
+                            <div class="product__price-new">
+                                <span class="product__price-por">{{ product.has_other_prices ? 'A partir de ' : 'Por: ' }} </span>
+                                <abbr class="product__currency" title="BRL">R$ </abbr>
+                                <span class="product__price-value">{{ product.price_offer|currency }}</span>
+                            </div>
+                        {% else %}
+                            <div class="product__price-new">
+                                <span class="product__price-por">{{ product.has_other_prices ? 'A partir de ' : 'Por: ' }} </span>
+                                <abbr class="product__currency" title="BRL">R$ </abbr>
+                                <span class="product__price-value">{{ product.price|currency }}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% else %} 
+                <div class="product__stock-zero">Esgotado!</div>
+            {% endif %} 
+        {% else %} 
+            <div class="product__unavailable">Indispon&iacute;vel</div> 
+        {% endif %}
+        
+        {% if product.available %}
+            {% if not product.upon_request %}
+                {% if product.stock > 0 or settings.without_stock_sale %}
+                    <div class="product__payment">{{ product.payment }}</div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </a>
+
+    {% if not utils.is_mobile %} 
+    {% if product.available %}
+    {% if not product.upon_request %}
+    {% if product.is_kit == "0" %}
+    <div class="product__buttons">
+        {% if settings.spy_product == 'on' %}
+        <button class="product__buttons-spy" onclick="spyProduct({{ product.id }})">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 25.595 25.593"><path fill-rule="evenodd" clip-rule="evenodd" d="M14.813 9.93h-3.195v-3.203c0-.442-.355-.801-.797-.801-.445 0-.8.355-.8.801v3.203h-3.197c-.441 0-.801.144-.801.586 0 .441.36 1.015.801 1.015h3.196v3.199c0 .441.359.801.8.801.442 0 .797-.359.797-.801v-3.199h3.199c.441 0 .797-.359.797-.801 0-.445-.355-.8-.8-.8zm10.539 14.273l-6.609-6.504c1.73-1.879 2.793-4.367 2.793-7.101-.001-5.856-4.821-10.598-10.766-10.598-5.95 0-10.77 4.742-10.77 10.598 0 5.851 4.82 10.597 10.77 10.597 2.566 0 4.925-.89 6.777-2.367l6.633 6.527c.324.316.848.316 1.172 0 .324-.32.324-.834 0-1.152zm-14.582-4.64c-5.036 0-9.114-4.017-9.114-8.965 0-4.953 4.078-8.969 9.114-8.969 5.031 0 9.109 4.016 9.109 8.969 0 4.949-4.078 8.965-9.109 8.965zm0 0"/></svg>
+        </button>
+        {% endif %}
+        
+        <a href="{{ product.link }}" class="product__buttons-add-cart">Adicionar no carrinho</a>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% endif %}
+    {% endif %}
+</div>

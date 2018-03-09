@@ -1,0 +1,53 @@
+{% spaceless %}
+<!doctype html>
+<html data-store="{{ store.id }}" class="page-{{ pages.current }}">
+<head>
+    {{ html.charset() }}
+    {{ tray.meta }}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- tray styles -->
+    {{ tray.styles }}
+
+    <!-- theme styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/theme.min.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/custom.css', {dynamic: true}) }}" type="text/css">
+
+    <!-- tray analytics -->
+    {{ tray.analytics }}
+    {{ googleTagManager.header(pages.current, tagManagerData) }}
+</head>
+<body>
+    {{ googleTagManager.top(pages.current, tagManagerData) }}
+
+    <div class="store">
+        {% element 'header' %}
+        {% element 'snippets/menu' %}
+        <main class="main">{{ content_for_layout }}</main>
+        <aside class="sidebar">{% element 'snippets/sidebar' %}</aside>
+        {% element 'footer' %}
+    </div>
+
+    {{ googleTagManager.bottom(pages.current, tagManagerData) }}
+
+    <!-- tray scripts -->
+    {{ tray.scripts }}
+    {{
+        html.script({
+            '0' : tray.paths.js ~ 'dist/application.min.js?' ~ utils.assets_version,
+            '1' : tray.paths.js ~ 'init.js?' ~ utils.assets_version
+        })
+    }}
+    {% element 'snippets/modal' %}
+    {% element 'snippets/pageview' %}
+    {{ store.chat }}
+
+    <!-- theme scripts-->
+    <script src="{{ asset('js/slick.min.js') }}"></script>
+    <script src="{{ asset('js/theme.min.js') }}"></script>
+
+</body>
+</html>
+{% endspaceless %}

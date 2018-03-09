@@ -1,0 +1,16 @@
+<div class="customer">
+    <span class="tray-hide" data-logged-user="true">
+        Bem-vindo <span data-customer="name"></span>! <a href="{{ links.logout }}">Logout</a>
+    </span>
+    <span class="tray-hide" data-logged-user="false">
+        Bem-vindo!<a href="{{ links.login }}">Faça login</a> ou <a href="{{ links.register }}">cadastre-se</a>
+    </span>
+    <span class="tray-hide" data-logged-user="true">
+        <a href="{{ links.logout }}">Logout</a>
+    </span>
+    <span class="tray-hide" data-logged-user="false">
+        <a href="{{ links.login }}">Login</a>
+    </span>
+    <a href="{{ links.orders }}">Meus pedidos</a>
+    <a href="{{ links.central }}">Minha conta</a>
+</div>

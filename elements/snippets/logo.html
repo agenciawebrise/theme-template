@@ -1,0 +1,11 @@
+{% if pages.current == 'home' %}
+    <h1 class="logo">
+        <span class="logo__name">{{ store.name }}</span>
+        <a href="{{ links.home }}">{{ Image('logo') }}</a>
+    </h1>
+{% else %}
+    <h2 class="logo">
+        <span class="logo__name">{{ store.name }}</span>
+        <a href="{{ links.home }}">{{ Image('logo') }}</a>
+    </h2>
+{% endif %}

@@ -1,0 +1,33 @@
+.cart{
+    
+    &__link{
+        display: flex;
+    }
+
+    &__icon{}
+
+    &__summary{}
+
+    &__title{}
+
+    &__amount{}
+
+    &__total{}
+
+    &__list{
+        display: none;
+    }
+
+    &__item{
+
+        &-link{}
+
+        &-image{}
+
+        &-name{}
+
+        &-price{}
+
+        &-amount{}
+    }
+}

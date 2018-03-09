@@ -1,0 +1,31 @@
+<nav class="menu">
+    <ul class="menu__level1">
+        {% for level1 in categories %}
+            {% if loop.index <= 6 %}
+                <li class="menu__level1-item">
+                    <h2 class="menu__tag">
+                        <a href="{{ level1.link }}" class="menu__level1-link">{{ level1.name }}</a>
+                    </h2>
+                    <ul class="menu__level2">
+                        {% for level2 in level1.children %}
+                            <li class="menu__level2-item">
+                                <h3 class="menu__tag">
+                                    <a href="{{ level2.link }}" class="menu__level2-link">{{ level2.name }}</a>
+                                </h3>
+                                <ul class="menu__level3">
+                                    {% for level3 in level2.children %}
+                                        <li class="menu__level3-item">
+                                            <h4 class="menu__tag">
+                                                <a href="{{ level3.link }}" class="menu__level3-link">{{ level3.name }}</a>
+                                            </h4>
+                                        </li>
+                                    {% endfor %}
+                                </ul><!-- level3 -->
+                            </li>
+                        {% endfor %}
+                    </ul><!-- level2 -->
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul><!-- level1 -->
+</nav>

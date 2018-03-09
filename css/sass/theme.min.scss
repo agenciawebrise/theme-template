@@ -1,0 +1,39 @@
+// base
+@import "base/reset";
+@import "base/variables";
+@import "base/styleguide";
+@import "base/grid";
+
+//pages
+@import "pages/cart";
+@import "pages/catalog";
+@import "pages/central_cliente";
+@import "pages/comparador";
+@import "pages/contact";
+@import "pages/depoimentos";
+@import "pages/extra";
+@import "pages/implantacao";
+@import "pages/listas";
+@import "pages/login";
+@import "pages/newsletter";
+@import "pages/noticia";
+@import "pages/payment";
+@import "pages/product";
+@import "pages/register";
+@import "pages/visitados";
+
+// modules
+@import "modules/header";
+@import "modules/footer";
+@import "modules/breadcrumb";
+@import "modules/customer";
+@import "modules/cart";
+@import "modules/sidebar";
+@import "modules/menu";
+@import "modules/logo";
+@import "modules/banners";
+@import "modules/newsletter";
+@import "modules/product";
+@import "modules/store-rating";
+@import "modules/search";
+@import "modules/showcase";

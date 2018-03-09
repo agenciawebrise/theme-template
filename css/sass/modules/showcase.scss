@@ -1,0 +1,15 @@
+.showcase{
+
+    &__list{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        
+        &-item{
+            display: flex;
+            align-items: stretch;
+            flex: 0 1 31%;
+            margin-bottom: 30px;
+        }
+    }
+}
